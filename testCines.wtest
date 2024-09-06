@@ -1,0 +1,47 @@
+import cines.*
+
+describe "group of tests for cine" {
+
+   test "valor de una entrada para sala numerada con sonido estandar "{
+     assert.equals(8000 , salaNumerada.precioEntrada())
+   }
+
+   test "valor de una entrada para sala numerada con sonido qwert "{
+    salaNumerada.sonido(qwert)
+    assert.equals(8000 + 13*240 , salaNumerada.precioEntrada())
+   }
+
+   test "valor de una entrada para sala numerada con sonido Dolby"{
+    salaNumerada.sonido(dolby)
+    assert.equals(8000 + 2000 , salaNumerada.precioEntrada())
+   }
+
+
+   test "valor de una entrada para sala no numerada con sonido estandar "{
+     assert.equals(9000 - 50 , salaNoNumerada.precioEntrada())
+   }
+
+   test "valor de una entrada para sala no numerada con sonido qwert "{
+    salaNoNumerada.sonido(qwert)
+    assert.equals(9000 + 13*50 - 50 , salaNoNumerada.precioEntrada())
+   }
+
+   test "valor de una entrada para sala no numerada con sonido Dolby"{
+    salaNoNumerada.sonido(dolby)
+    assert.equals(9000 + 1000 - 50, salaNoNumerada.precioEntrada())
+   }
+
+   test "Entrada gratuita para salas multitudinarias con sonido dolby "{
+    salaNoNumerada.sonido(dolby)
+    salaNoNumerada.variarAsientos(50000)
+    assert.equals(0, salaNoNumerada.precioEntrada())
+   }
+
+   test "Entrada precio maximo para salas mediana con sonido qwert "{
+    salaNoNumerada.sonido(qwert)
+    salaNoNumerada.variarAsientos(240)
+    assert.equals(10000, salaNoNumerada.precioEntrada())
+   }
+
+
+}
